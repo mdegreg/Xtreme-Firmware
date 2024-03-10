@@ -120,10 +120,10 @@ static bool protocol_indala224_can_be_decoded(uint8_t* data) {
     // Use PSK2 Demodulated version
     uint8_t temp_data[INDALA224_ENCODED_DATA_SIZE];
     memcpy(temp_data, data, INDALA224_ENCODED_DATA_SIZE);
-    psk1_to_psk2(temp_data, INDALA224_ENCODED_DATA_SIZE);
-
     if(!protocol_indala224_check_preamble(temp_data, 0)) return false;
     if(!protocol_indala224_check_preamble(temp_data, 224)) return false;
+    psk1_to_psk2(temp_data, INDALA224_ENCODED_DATA_SIZE);
+
     return true;
 }
 
